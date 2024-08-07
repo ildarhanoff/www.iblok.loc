@@ -31,6 +31,9 @@
           font-size: 3.5rem;
         }
       }
+      .btn-secondary-green {
+        background: green !important;
+      }
     </style>
 
     
@@ -78,8 +81,9 @@
       <h1>Album example</h1>
       <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
       <p>
-        <a href="#" class="btn btn-primary my-2">Main call to action</a>
-        <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+        <a href="/?act=login" class="btn btn-primary my-2">Логин</a>
+        <a href="/?act=register" class="btn btn-secondary btn-secondary-green my-2">Регистрация</a>
+        <a href="#" class="btn btn-secondary my-2">Все публикации</a>
       </p>
     </div>
   </section>
