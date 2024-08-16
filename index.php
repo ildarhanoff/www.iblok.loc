@@ -32,6 +32,7 @@ if (isset($_GET['act'])) {
     }
     die();
 }
+//test ipad
 
 require_once 'templates/index.php';
 ?>
