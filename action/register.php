@@ -8,7 +8,7 @@ if (count($_POST) > 0) {
     $password = password_hash($password, PASSWORD_DEFAULT);//хеширование пароля
     
    $mysqli->query("INSERT INTO user SET email = '" . $email . "', password = '" . $password . "'"); //Создание пользователя в БД
-   header ('Location: /?act=login');
+   header ('Location: /?act=login'); //направляем пользователя в страницу авторизации
    die();
 }
 

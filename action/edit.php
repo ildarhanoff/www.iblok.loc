@@ -18,6 +18,6 @@ if(count($_POST) > 0) {
     }
 }
 
-require_once 'templates/login.php'
+require_once 'templates/edit.php'
 
 ?>

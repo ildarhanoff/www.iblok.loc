@@ -78,6 +78,11 @@ body {
   border-top-right-radius: 0;
 }
 
+.error-blok {
+    color: red;
+    margin-bottom: 12px;
+}
+
     </style>
 
     
@@ -85,20 +90,28 @@ body {
     <link href="signin.css" rel="stylesheet">
   </head>
   <body class="text-center">
+
     
 <form class="form-signin" action="" method="POST">
   <input type="hidden" name="act" value="login"/>
   <img class="mb-4" src="../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
   <h1 class="h3 mb-3 font-weight-normal">Пожалуйста Авторизуйтесь</h1>
+
+  <div class="error-blok">
+    <i><?= $error ?></i>
+  </div>
+
   <label for="inputEmail" class="sr-only">Электронная почта</label>
   <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Электронная почта" required autofocus>
   <label for="inputPassword" class="sr-only">Пароль</label>
   <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Пароль" required>
+
   <div class="checkbox mb-3">
     <label>
       <input type="checkbox" value="remember-me"> Запомнить меня
     </label>
   </div>
+
   <button class="btn btn-lg btn-primary btn-block" type="submit">Авторизоваться</button>
 </form>
 
