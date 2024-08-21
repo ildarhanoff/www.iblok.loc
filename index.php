@@ -1,6 +1,13 @@
 <?php
-require_once 'config.php';
+
 session_start();
+
+
+require_once 'config.php';
+require_once 'functions/helpers.php';
+
+
+
 $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME); //Значения записываются напрямую, поэтому лучше сделать через config.php
 
 
@@ -29,10 +36,13 @@ if (isset($_GET['act'])) {
         case 'delete':
             require_once 'action/delete.php';
         break;
+        case 'logout':
+            require_once 'action/logout.php';
+        break;
     }
     die();
 }
-//test ipad
+
 
 require_once 'templates/index.php';
 ?>

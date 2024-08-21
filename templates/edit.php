@@ -3,20 +3,10 @@
 ?>
 
 <main role="main">
-  <section class="jumbotron text-center">
-    <div class="container">
-    <p>
-        <a href="/?act=articles" class="btn btn-secondary btn-secondary-green my-2">Статьи</a>
-        <a href="/?act=profile" class="btn btn-primary my-2">Профиль</a>
-        <a href="#" class="btn btn-secondary my-2">Все публикации</a>
-    </p>
-    </div>
-  </section>
-
     <div class="album py-5 bg-light">
         <div class="container">
             <form class="form-horizontal" role="form" method="POST" action="">
-                <input type="hidden" name="act" value="add"/>
+                <input type="hidden" name="act" value="edit"/>
                 <div class="row">
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
@@ -32,7 +22,7 @@
                             <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                                 <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
                                 <input type="text" name="title" class="form-control" id="email"
-                                       placeholder="Заголовок" required autofocus>
+                                       placeholder="Заголовок" value=<?=$article['title']?> required autofocus>
                             </div>
                         </div>
                     </div>
@@ -53,7 +43,7 @@
                             <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                                 <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
                                 <textarea name="content" class="form-control" id="text"
-                                          placeholder="Текст" required autofocus rows="15"></textarea>
+                                          placeholder="Текст" required autofocus rows="15"><?=$article['content']?></textarea>
                             </div>
                         </div>
                     </div>

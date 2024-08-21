@@ -1,21 +1,19 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.101.0">
-    <title>Signin Template · Bootstrap v4.6</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/sign-in/">
-
-    
-
-    <!-- Bootstrap core CSS -->
-<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<?
+  include_once 'templates/header.php';
+?>
 
 <main role="main">
+
+    <section class="jumbotron text-center">
+        <div class="container">
+        <p>
+            <a href="/?act=add" class="btn btn-secondary btn-secondary-green my-2">Добавить новую статью</a>
+            <a href="/?act=profile" class="btn btn-primary my-2">Профиль</a>
+            <a href="#" class="btn btn-secondary my-2">Все публикации</a>
+        </p>
+        </div>
+    </section>
+
     <div class="album py-5 bg-light">
         <div class="container">
             <table class="table">
@@ -35,13 +33,23 @@
                     <td><?=$row['createdAt']?></td>
                     <td></td>
                     <td>
-                        <a href="/?act=edit"><button type="button" class="btn btn-primary">Редактировать</button></a>
-                        <a href="/?act=delete"><button type="button" class="btn btn-danger">Удалить</button></a>
+                        <a href="/?act=edit&id=<?=$row['id']?>"><button type="button" class="btn btn-primary">Редактировать</button></a>
+                        <a href="/?act=delete&id=<?=$row['id']?>"><button type="button" class="btn btn-danger">Удалить</button></a>
                     </td>
                 </tr>
                 <? endwhile ?>
+                <? if ($result->num_rows === 0): ?>
+                    <tr>
+                        <td colpan="4">Нет статей</td>
+                    <tr>
+                <?endif?>
                 </tbody>
             </table>
         </div>
     </div>
 </main>
+
+
+<?
+  include_once 'templates/footer.php';
+?>

@@ -1,16 +1,7 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.101.0">
-    <title>Signin Template · Bootstrap v4.6</title>
+<?
+  include_once 'templates/header.php';
+?>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/sign-in/">
-
-    
 
     <!-- Bootstrap core CSS -->
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -39,8 +30,6 @@ body {
 }
 
 body {
-  display: -ms-flexbox;
-  display: flex;
   -ms-flex-align: center;
   align-items: center;
   padding-top: 40px;
@@ -115,7 +104,7 @@ body {
   <button class="btn btn-lg btn-primary btn-block" type="submit">Авторизоваться</button>
 </form>
 
+<?
+  include_once 'templates/footer.php';
+?>
 
-    
-  </body>
-</html>
