@@ -1,8 +1,9 @@
 <?
 
-$user = checkUser($mysqli);
+$user = getUser($pdo);
 
-$result = $mysqli->query("SELECT * FROM article WHERE userId = '" . $$user['id'] . "' ORDER BY id DESC");
+$stmt = $pdo->prepare("SELECT * from article WHERE userId = ? ORDER BY id DESC");
+$stmt->execute([$user['id']]);
 
 
 

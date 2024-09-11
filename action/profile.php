@@ -1,6 +1,6 @@
 <?
 
-$user = checkUser($mysqli);
+$user = getUser($pdo);
 
 //Проверяем что отправил ПОСТ запрос с профиля
 if(count($_POST)) {   
@@ -8,8 +8,9 @@ if(count($_POST)) {
     $surname = $_POST['surname'] ?? null;
     $phone = $_POST['phone'] ?? null;
     $about = $_POST['about'] ?? null;
-    $mysqli->query("UPDATE user SET name = '" . $name . "', surname = '" . $surname . "', phone = '" . $phone . "', about = '" . $about . "'  WHERE id = " . $user['id']); //обновляем данные в БД
-    header('Location: /?act=profile'); //редирект, потому что Пост запрос снова не отправился и он будет делать это постоянно
+    $stmt = $pdo->prepare("UPDATE user SET name = ?, surname = ?, phone = ?, about = ? WHERE id = ?");
+    $stmt->execute([$name, $surname, $phone, $about, $_SESSION['userId']]); //обновляем данные в БД
+    redirect('/?act=profile'); //редирект, потому что Пост запрос снова не отправился и он будет делать это постоянно
     exit;   
 }
 

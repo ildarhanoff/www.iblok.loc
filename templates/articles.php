@@ -4,15 +4,7 @@
 
 <main role="main">
 
-    <section class="jumbotron text-center">
-        <div class="container">
-        <p>
-            <a href="/?act=add" class="btn btn-secondary btn-secondary-green my-2">Добавить новую статью</a>
-            <a href="/?act=profile" class="btn btn-primary my-2">Профиль</a>
-            <a href="#" class="btn btn-secondary my-2">Все публикации</a>
-        </p>
-        </div>
-    </section>
+    <? include_once 'templates/menu.php'; ?>
 
     <div class="album py-5 bg-light">
         <div class="container">
@@ -26,9 +18,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?while ($row = $result->fetch_assoc()): //вывод статей из БД?> 
+                <?while ($row = $stmt->fetch()): //вывод статей из БД?> 
                 <tr>
                     <th scope="row"><?=$row['id']?></th>
+                    <td><img src="/images/<?=$row['img']?>"/></td>
                     <td><?=$row['title']?></td>
                     <td><?=$row['createdAt']?></td>
                     <td></td>
@@ -38,7 +31,7 @@
                     </td>
                 </tr>
                 <? endwhile ?>
-                <? if ($result->num_rows === 0): ?>
+                <? if ($stmt->rowCount() === 0): ?>
                     <tr>
                         <td colpan="4">Нет статей</td>
                     <tr>

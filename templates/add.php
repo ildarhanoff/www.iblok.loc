@@ -5,17 +5,16 @@
 <main role="main">
   <section class="jumbotron text-center">
     <div class="container">
-    <p>
-        <a href="/?act=articles" class="btn btn-secondary btn-secondary-green my-2">Статьи</a>
-        <a href="/?act=profile" class="btn btn-primary my-2">Профиль</a>
-        <a href="#" class="btn btn-secondary my-2">Все публикации</a>
-    </p>
+    <? include_once 'templates/menu.php';?>
     </div>
   </section>
 
     <div class="album py-5 bg-light">
         <div class="container">
-            <form class="form-horizontal" role="form" method="POST" action="">
+
+        <? include_once 'templates/menu.php'; ?>
+        
+            <form class="form-horizontal" role="form" method="POST" enctype='multipart/form-data' action="">  <!--enctype='multipart/form-data'При загрузке файлов необходимо указывать тип кодирования-->
                 <input type="hidden" name="act" value="add"/>
                 <div class="row">
                     <div class="col-md-3"></div>
@@ -39,7 +38,7 @@
                     <div class="col-md-3">
                         <div class="form-control-feedback">
                         <span class="text-danger align-middle">
-                            <i class="fa fa-close"></i> Example error message
+                            <i class="fa fa-close"></i> <?=$error?>
                         </span>
                         </div>
                     </div>
@@ -54,6 +53,25 @@
                                 <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
                                 <textarea name="content" class="form-control" id="text"
                                           placeholder="Текст" required autofocus rows="15"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <i class="fa fa-close"></i> 
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="form-group has-danger">
+                            <label class="sr-only" for="file">Текст новую статьи</label>
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                                <input type="file"  id="file" name="file"/>
                             </div>
                         </div>
                     </div>

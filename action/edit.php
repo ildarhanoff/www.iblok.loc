@@ -1,29 +1,50 @@
 <?
 
-$userId = checkUser($mysqli);
+$user = getUser($pdo);
 
 $id = $_GET['id'] ?? null;
 if (!$id) {
-    header('Location: /?act=articles'); 
+    redirect('/?act=articles'); 
     die();  
 }
 
  
 //Проверяем что отправил ПОСТ запрос с формы статьи
 if(count($_POST)) {   
-    $title = $_POST['title'] ?? null;
-    $content = $_POST['content'] ?? null;
-    $mysqli->query("UPDATE article SET " . $sql . "title = '" . $title . "', content = '" . $content . "' WHERE id = " . $id . " AND userId = " . $user['id']);
-    header('Location: /?act=articles'); //редирект, потому что Пост запрос снова не отправился и он будет делать это постоянно
+    $sql = '';
+    if ($_FILES['file']['size']) { 
+        $filename = upload($user['id']); //Картинку загруженную получаем 
+        $sql = "img = '" . $filename . "', "; //Загружаем в переменную и отправляем запрос в sql ниже
+        $article = getUserArticle($pdo, $id, $user); //Удаление картинки
+        @unlink($_SERVER['DOCUMENT_ROOT'] . "/images/" . $article['img']); //функция удаление файлов, если статья удалится, @функция подавления ошибок
+    }
+
+    $title = strip_tags($_POST['title'] ?? null); //strip_tags очищает от посторонних html тегов
+    $content = strip_tags($_POST['content'] ?? null);   
+    if($user['isAdmin']) {
+        $stmt = $pdo->prepare("UPDATE article SET " . $sql . "title = ?, content =  ? WHERE id = ?");
+        $stmt->execute([$title, $content, $id]);
+        
+    } else {
+        $stmt = $pdo->prepare("UPDATE article SET " . $sql . "title = ?, content =  ? WHERE id = ? AND userId = ?");
+        $stmt->execute([$title, $content, $id, $user['id']]);
+        
+    }    
     die;   
 }   
 
+if($user['isAdmin']) {
+    $stmt = $pdo->prepare("SELECT * from article WHERE id = ? LIMIT 1"); //Если Админ, то он может редактировать любую статью
+    $stmt->execute([$id]);
+} else {
+    $stmt = $pdo->prepare("SELECT * from article WHERE id = ? AND userId = ? LIMIT 1");
+    $stmt->execute([$id, $user['id']]);
+}
 
 
-$result = $mysqli->query("SELECT * FROM article WHERE id = '" . $id . "' AND userId = ". $user['id'] ." LIMIT 1"); 
-$article = $result->fetch_assoc();
+$article = $stmt->fetch();
 if (!$article) {
-    header('Location: /?act=articles'); 
+    redirect('/?act=articles'); 
     die();  
 }
 

@@ -3,6 +3,9 @@
 ?>
 
 <main role="main">
+
+<? include_once 'templates/menu.php'; ?>
+
     <div class="album py-5 bg-light">
         <div class="container">
             <form class="form-horizontal" role="form" method="POST" action="">
@@ -44,6 +47,25 @@
                                 <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
                                 <textarea name="content" class="form-control" id="text"
                                           placeholder="Текст" required autofocus rows="15"><?=$article['content']?></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <i class="fa fa-close"></i> Example error message
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="form-group has-danger">
+                            <label class="sr-only" for="file">Текст новую статьи</label>
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                                <input type="file"  id="file" name="file"/>
                             </div>
                         </div>
                     </div>
